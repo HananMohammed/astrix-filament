@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources;
 
-use App\Domains\Order\Datatable\PreOrderDatatable;
-use App\Domains\Order\Form\PreOrderForm;
 use App\Filament\Resources\PreOrderResource\Pages;
+use App\Filament\Resources\PreOrderResource\Pages\PreOrderDatatable;
+use App\Filament\Resources\PreOrderResource\Pages\PreOrderForm;
 use App\Models\PreOrder;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -16,11 +16,6 @@ class PreOrderResource extends Resource
     protected static ?string $navigationGroup = 'Orders';
     protected static ?string $navigationLabel = 'Pre Orders';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    public static function canCreate(): bool
-    {
-        return false;
-    }
 
 
     public static function form(Form $form): Form
@@ -49,8 +44,8 @@ class PreOrderResource extends Resource
     {
         return [
             'index' => Pages\ListPreOrders::route('/'),
-//            'create' => Pages\CreatePreOrder::route('/create'),
-//            'edit' => Pages\EditPreOrder::route('/{record}/edit'),
+            'create' => Pages\CreatePreOrder::route('/create'),
+            'edit' => Pages\EditPreOrder::route('/{record}/edit'),
         ];
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domains\Order\Form;
+namespace App\Filament\Resources\PreOrderResource\Pages;
 
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
