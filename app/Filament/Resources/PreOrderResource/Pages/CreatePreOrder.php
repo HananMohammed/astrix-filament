@@ -17,16 +17,14 @@ class CreatePreOrder extends CreateRecord
 
     protected function handleRecordCreation(array $data): Model
     {
-        $password = Arr::pull($data, 'sfda_client_password');
-        $data['sfda_client_password'] = Hash::make($password);
         $process = Process::create([
             'project_type' => $data['project_type'],
             'order_date' => date("Y-m-d"),
             'register_date' => date("Y-m-d"),
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
         ]);
 
-        $data = array_merge($data, ['process_id' => $process->id]);
+        $data = array_merge($data, ['process_id' => $process->id, 'user_id' => auth()->id()]);
         return static::getModel()::create($data);
 
     }

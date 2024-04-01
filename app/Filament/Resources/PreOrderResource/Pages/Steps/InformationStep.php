@@ -13,6 +13,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Wizard\Step;
 use Filament\Forms\Get;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Illuminate\Support\Facades\Hash;
 
 class InformationStep
 {
@@ -80,6 +81,9 @@ class InformationStep
                     ->label('Password')
                     ->clearAfterStateUpdatedHooks()
                     ->required()
+                    ->password()
+                    ->dehydrateStateUsing(fn ($state) => Hash::make($state))
+                    ->dehydrated(fn ($state) => filled($state))
                     ->visible(fn(Get $get): bool|null => $get('sfda_registration') == SfdaRegistration::client_account()->value),
 
                 SpatieMediaLibraryFileUpload::make('primary_packaging_picture')

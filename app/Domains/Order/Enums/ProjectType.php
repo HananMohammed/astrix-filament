@@ -28,4 +28,21 @@ class ProjectType extends Enum
             'food' => 'Food',
         ];
     }
+
+    public static function toLabels(): array
+    {
+        return [
+            1 => 'Cosmetic',
+            2 => 'Food',
+        ];
+    }
+
+
+    public static function getColor($step): string
+    {
+        return match ($step) {
+            'Cosmetic' => 'primary',
+            'Food' => 'info',
+        };
+    }
 }
