@@ -6,8 +6,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -15,6 +14,8 @@ return new class extends Migration
     {
         Schema::create('pre_orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class)->nullable();
+            $table->foreignIdFor(Process::class)->nullable();
             $table->string('name');
             $table->string('company_name');
             $table->string('trade_name');
@@ -23,18 +24,31 @@ return new class extends Migration
             $table->string('mobile');
             $table->string('email');
             $table->tinyInteger('primary_packaging');
-            $table->string('primary_selected_option')->nullable();
-
-
-//            $table->bigInteger('product_quantity');
-//            $table->string('delivery_duration');
-//            $table->string('dosage_licences');
-//            $table->string('design_type');
-//            $table->foreignIdFor(User::class)->nullable();
-//            $table->foreignIdFor(Process::class)->nullable();
-//            $table->date('order_date')->nullable();
-//            $table->date('register_date')->nullable();
-//            $table->timestamps();
+            $table->string('primary_selected_option', 50)->nullable();
+            $table->text('primary_packaging_description')->nullable();
+            $table->tinyInteger('primary_packaging_accessories');
+            $table->string('accessories_option', 50)->nullable();
+            $table->text('accessories_description')->nullable();
+            $table->string('primary_package_color', 70);
+            $table->string('accessories_color', 70);
+            $table->tinyInteger('secondary_packaging');
+            $table->string('secondary_packaging_option', 50)->nullable();
+            $table->string('label_sticker', 50)->nullable();
+            $table->text('secondary_description')->nullable();
+            $table->boolean('astrix_pharma')->default(false);
+            $table->tinyInteger('ingredients');
+            $table->tinyInteger('barcode_type');
+            $table->string('barcode')->nullable();
+            $table->tinyInteger('sfda_registration');
+            $table->string('sfda_client_username')->nullable();
+            $table->string('sfda_client_password')->nullable();
+            $table->tinyInteger('master_formula_details');
+            $table->string('active_material_details')->nullable();
+            $table->string('product_color_and_odor')->nullable();
+            $table->tinyInteger('dose_added_by');
+            $table->string('dose_name')->nullable();
+            $table->boolean('approved_by_sale')->default(false);
+            $table->timestamps();
         });
     }
 
