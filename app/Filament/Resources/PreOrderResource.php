@@ -20,7 +20,7 @@ class PreOrderResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form->schema(PreOrderForm::getForm());
+        return $form->columns(1)->schema(PreOrderForm::getForm());
     }
 
     public static function table(Table $table): Table
