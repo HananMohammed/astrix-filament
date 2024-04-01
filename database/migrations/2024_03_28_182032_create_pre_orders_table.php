@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignIdFor(User::class)->nullable();
             $table->foreignIdFor(Process::class)->nullable();
+            $table->tinyInteger('project_type')->default(1)->comment('1->cosmetic, 2->food');
             $table->string('name');
             $table->string('company_name');
             $table->string('trade_name');
@@ -47,6 +48,7 @@ return new class extends Migration {
             $table->string('product_color_and_odor')->nullable();
             $table->tinyInteger('dose_added_by');
             $table->string('dose_name')->nullable();
+            $table->string('specified_claims');
             $table->boolean('approved_by_sale')->default(false);
             $table->timestamps();
         });
